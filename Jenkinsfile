@@ -27,6 +27,8 @@ pipeline{
                      sudo ./get_helm.sh
                      sudo helm version
                      aws eks update-kubeconfig --name eksdemo --region us-west-2
+                     kubectl delete deployment web ||echo "deployment web doesn't exist"
+                     kubectl delete svc web ||echo "svc web doesn't exist"
                      kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
                      kubectl expose deployment web --type=NodePort --port=8080
 
